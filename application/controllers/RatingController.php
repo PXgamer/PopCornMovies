@@ -20,6 +20,7 @@ class RatingController extends CI_Controller {
 	 */
 	public function getRatings()
 	{
+		if($this->get("type") == "custom_avg")
 		$this->load->model('Rating');
 		$rating = $this->Rating->getAVGRating();
 		echo $rating;
