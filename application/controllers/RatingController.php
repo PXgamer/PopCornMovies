@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class RatingController extends CI_Controller {
+class RatingController extends RestController {
 
 	/**
 	 * Index Page for this controller.
@@ -24,7 +24,7 @@ class RatingController extends CI_Controller {
 		{
 			$this->load->model('Rating');
 			$rating = $this->Rating->getAVGRating($movie_id);
-			echo $rating;
+			$this->response($rating, 200);
 		}
 		else
 		{
@@ -35,10 +35,11 @@ class RatingController extends CI_Controller {
 	public function postCustomRating($movie_id)
 	{
 		$this->load->model('Rating');
+		$rating_json = json_decode(trim(file_get_contents('php://input')), true);
 		$this->Rating->setMovieId($movie_id);
-		$this->Rating->setUserId($this->input->post("user_id"));
-		$this->Rating->setRating($this->input->post("rating"));
-		$this->Rating->setText($this->input->post("text"));
-				$rating = $this->Rating->insertRating();
+		$this->Rating->setUserId($rating_json["user_id"]);
+		$this->Rating->setRating($rating_json["rating"]);
+		$this->Rating->setText($rating_json["text"]);
+		$rating = $this->Rating->insertRating();
 	}
 }
