@@ -12,9 +12,9 @@ class Rating extends CI_Model
         return $this->movie_id;
     }
 
-    public function getAVGRating()
+    public function getAVGRating($movie_id)
     {
-        $query = $this->db->query("SELECT AVG(rating) as rating FROM popcorndb.ratings");
+        $query = $this->db->query("SELECT AVG(rating) as rating FROM popcorndb.ratings where movie_id = ?", array($movie_id));
         $row = $query->row();
 
         if (isset($row))
@@ -22,4 +22,5 @@ class Rating extends CI_Model
            return $row->rating;
         }
     }
+
 }

@@ -50,6 +50,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 |		my-controller/my-method	-> my_controller/my_method
 */
 $route['default_controller'] = 'RatingController';
-$route['ratings']['get'] = 'RatingController/getRatings';
+$route['ratings/(:num)']['get'] = 'RatingController/getRatings/$1';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;

@@ -18,17 +18,22 @@ class RatingController extends CI_Controller {
 	 * map to /index.php/welcome/<method_name>
 	 * @see https://codeigniter.com/user_guide/general/urls.html
 	 */
-	public function getRatings()
+	public function getRatings($movie_id)
 	{
 		if($this->input->get("type") == "custom_avg")
 		{
 			$this->load->model('Rating');
-			$rating = $this->Rating->getAVGRating();
+			$rating = $this->Rating->getAVGRating($movie_id);
 			echo $rating;
 		}
 		else
 		{
 			echo "404";
 		}
+	}
+
+	public function postCustomRating($rating)
+	{
+		# code...
 	}
 }
