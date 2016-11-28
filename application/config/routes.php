@@ -51,6 +51,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 */
 $route['default_controller'] = 'welcome';
 $route['cinemas'] = 'CinemasController/index';
-$route['cinemas/(:num)'] = 'CinemasController/getCinema/$1';
+$route['cinemas/(:any)'] = 'CinemasController/getCinema/$1';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
