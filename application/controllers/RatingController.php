@@ -32,8 +32,13 @@ class RatingController extends CI_Controller {
 		}
 	}
 
-	public function postCustomRating($rating)
+	public function postCustomRating($movie_id)
 	{
-		# code...
+		$this->load->model('Rating');
+		$this->Rating->setMovieId($movie_id);
+		$this->Rating->setUserId($this->input->post("user_id"));
+		$this->Rating->setRating($this->input->post("rating"));
+		$this->Rating->setText($this->input->post("text"));
+				$rating = $this->Rating->insertRating();
 	}
 }
