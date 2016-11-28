@@ -1,6 +1,6 @@
 <?php
 
-class Movie_model extends CI_Model
+class Movie_model extends CI_Model implements JsonSerializable
 {
     private $id = 0;
     private $name = '';
@@ -26,9 +26,9 @@ class Movie_model extends CI_Model
         return $this->description;
     }
 
-    public function load()
+    public function loadAll()
     {
-        $query = $this->db->query('SELECT * FROM movies');
+        $query = $this->db->get('movies');
         $movies = array();
 
         foreach ($query->result('Movie_model') as $movie)
@@ -37,5 +37,18 @@ class Movie_model extends CI_Model
         }
 
         return $movies;
+    }
+	
+	public function loadByID($id)
+	{
+		$query = $this->db->select('*')->from('movies')->where('id =', $id)->get();
+		$movie = $query->first_row('Movie_model');
+		
+		return $movie;
+	}
+	
+	public function jsonSerialize()
+	{
+        return (object) get_object_vars($this);
     }
 }
