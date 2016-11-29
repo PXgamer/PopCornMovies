@@ -54,3 +54,5 @@ $route['cinemas'] = 'CinemasController/index';
 $route['cinemas/(:num)'] = 'CinemasController/getCinema/$1';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
+$route['movies'] = 'MovieController/getMovies';
+$route['movies/(:num)'] = 'MovieController/getMovieByID/$1';
