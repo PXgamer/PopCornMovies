@@ -22,7 +22,8 @@ if(!is_numeric($id)){
     return false;
 } else {
     $this->load->model('cinema_model');
-    $getAllCinemas = $this->cinema_model->getCinema($id);
+    $this->cinema_model->setId($id);
+    $getAllCinemas = $this->cinema_model->getCinema();
     if($getAllCinemas != FALSE){
         $data['json'] = json_encode($getAllCinemas);
         $this->load->view('cinema_view', $data);
