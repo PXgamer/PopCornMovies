@@ -38,6 +38,9 @@ class Movie_model extends CI_Model implements JsonSerializable
 		return $this->screenings();
 	}
 	
+	/*
+	Lädt alle referenzierten Vorstellungen als Array in die Klassenvariable screenings
+	*/
 	private function loadScreenings()
 	{
 		$this->load->model("screening_model");
@@ -67,10 +70,16 @@ class Movie_model extends CI_Model implements JsonSerializable
 	public function loadByID($id)
 	{
 		$query = $this->db->select('*')->from('movies')->where('id =', $id)->get();
-		$movie = $query->first_row('Movie_model');
-		$movie->loadScreenings();
 		
-		return $movie;
+		if ($query->num_rows() >= 1)
+		{
+			$movie = $query->first_row('Movie_model');
+			$movie->loadScreenings();
+			
+			return $movie;
+		}
+		
+		return FALSE;
 	}
 	
 	/*
