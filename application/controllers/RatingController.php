@@ -1,34 +1,31 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
+require APPPATH . '/libraries/RestController.php';
+require APPPATH . '/libraries/exceptions/HttpNotFoundException.php';
+require APPPATH . '/libraries/exceptions/DbNotFoundException.php';
+
 class RatingController extends RestController {
 
-	/**
-	 * Index Page for this controller.
-	 *
-	 * Maps to the following URL
-	 * 		http://example.com/index.php/welcome
-	 *	- or -
-	 * 		http://example.com/index.php/welcome/index
-	 *	- or -
-	 * Since this controller is set as the default controller in
-	 * config/routes.php, it's displayed at http://example.com/
-	 *
-	 * So any other public methods not prefixed with an underscore will
-	 * map to /index.php/welcome/<method_name>
-	 * @see https://codeigniter.com/user_guide/general/urls.html
-	 */
 	public function getRatings($movie_id)
 	{
-		if($this->input->get("type") == "custom_avg")
+		try
 		{
-			$this->load->model('Rating');
-			$rating = $this->Rating->getAVGRating($movie_id);
-			$this->response($rating, 200);
+			if($this->input->get("type") == "custom_avg")
+			{
+				$this->load->model('Rating');
+				$this->Rating->getAVGRating($movie_id);
+				$rating = $this->Rating->mapToArray();
+				$this->response($rating, 200);
+			}
+			else
+			{
+				throw new HttpNotFoundException();
+			}
 		}
-		else
+		catch(DbNotFoundException $e)
 		{
-			echo "404";
+			$this->response(null, null, new HttpNotFoundException("No Rating found for movie_id"));
 		}
 	}
 
@@ -41,5 +38,7 @@ class RatingController extends RestController {
 		$this->Rating->setRating($rating_json["rating"]);
 		$this->Rating->setText($rating_json["text"]);
 		$rating = $this->Rating->insertRating();
+
+		$this->response($rating, 200);
 	}
 }

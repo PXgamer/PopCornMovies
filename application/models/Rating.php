@@ -1,9 +1,8 @@
 <?php
-
 class Rating extends CI_Model
 {
-    private $movieId;
-    private $userId;
+    private $movie_id;
+    private $user_id;
     private $rating;
     private $text;
 
@@ -38,7 +37,7 @@ class Rating extends CI_Model
     }
 
     public function getText()
-    {
+    { 
         return $this->text;
     }
 
@@ -49,12 +48,25 @@ class Rating extends CI_Model
 
     public function getAVGRating($movie_id)
     {
-        $query = $this->db->query("SELECT AVG(rating) as rating FROM popcorndb.ratings where movie_id = ?", array($movie_id));
-        $row = $query->row();
-
-        if (isset($row))
+        $query = $this->db->query("SELECT movie_id, AVG(rating) as rating FROM popcorndb.ratings where movie_id = ?", array($movie_id));
+        if($query->num_rows() == 0)
         {
-           return $row->rating;
+            $row = $query->row();
+             var_dump($row);
+            if (isset($row))
+            {
+                $this->setMovieId($row->movie_id);
+                $this->setRating($row->rating);
+                return $this;
+            }
+            else
+            {
+                throw new DbNotFoundException();
+            }
+        }
+        else
+        {
+            throw new DbNotFoundException();
         }
     }
 
@@ -66,5 +78,19 @@ class Rating extends CI_Model
             $this->getRating(), 
             $this->getText()));
     }
+    
+    public function mapToArray()
+    {
+        $ratingArray = [];
+        if(!empty($this->getMovieId()))
+            $ratingArray['movie_id'] = $this->getMovieId();
+        if(!empty($this->getUserId()))
+            $ratingArray['user_id'] = $this->getUserId();
+        if(!empty($this->getRating()))
+            $ratingArray['rating'] = $this->getRating();
+        if(!empty($this->getText()))
+            $ratingArray['text'] = $this->getText();
 
+        return $ratingArray;
+    }
 }
