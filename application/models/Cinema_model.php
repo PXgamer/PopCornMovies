@@ -23,7 +23,7 @@ class Cinema_model extends CI_Model {
         $this->db->where('id', $id);
         $query =  $this->db->get('cinemas');
          if ($query->num_rows() > 0){ 
-             return $query->result();
+             return $query->first_row();
          } else {
             return false;
          }
