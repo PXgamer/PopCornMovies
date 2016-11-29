@@ -5,6 +5,8 @@ class Movie_model extends CI_Model implements JsonSerializable
     private $id = 0;
     private $name = '';
     private $description = '';
+	private $image_path = '';
+	private $screenings = [];
 
     public function __construct()
     {
@@ -26,6 +28,22 @@ class Movie_model extends CI_Model implements JsonSerializable
         return $this->description;
     }
 	
+	public function getImagePath()
+	{
+		return $this->image_path;
+	}
+	
+	public function getScreenings()
+	{
+		return $this->screenings();
+	}
+	
+	private function loadScreenings()
+	{
+		$this->load->model("screening_model");
+		$this->screenings = $this->screening_model->loadByMovieID($this->id);
+	}
+	
 	/*
 	Lädt alle Filme aus der Datenbank und gibt diese in einem Array zurück
 	*/
@@ -36,6 +54,7 @@ class Movie_model extends CI_Model implements JsonSerializable
 
         foreach ($query->result('Movie_model') as $movie)
         {
+			$movie->loadScreenings();
             $movies[] = $movie;
         }
 
@@ -49,6 +68,7 @@ class Movie_model extends CI_Model implements JsonSerializable
 	{
 		$query = $this->db->select('*')->from('movies')->where('id =', $id)->get();
 		$movie = $query->first_row('Movie_model');
+		$movie->loadScreenings();
 		
 		return $movie;
 	}
@@ -96,6 +116,7 @@ class Movie_model extends CI_Model implements JsonSerializable
 
         foreach ($query->result('Movie_model') as $movie)
         {
+			$movie->loadScreenings();
             $movies[] = $movie;
         }
 
