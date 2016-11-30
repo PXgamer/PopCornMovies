@@ -1,37 +1,31 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed'); ?>
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<title>PopCornMovieAPI</title>
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<title>PopCornMovie</title>
+<link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
+<link rel="stylesheet" href="<?php echo base_url();?>assets/bootstrap/css/bootstrap.min.css">
+<link rel="stylesheet" href="<?php echo base_url();?>assets/custom/css/style.css">
+</head>
+<body>
+<div class="jumbotron">
+<img src="<?php echo base_url();?>assets/gfx/logo.png" alt="Logo">
 
-<div class="container">
-	<div class="jumbotron">
-		<h1><img src="<?php echo base_url();?>assets/gfx/logo.png" alt="Logo">PopCornMovie!</h1>
-	</div>
+<h2>Cinemas <small>by Oliver & Konstantin</small></h2>
+<p></p>
+<h4><a href="http://localhost/PopCornMovies/cinemas">http://localhost/PopCornMovies/cinemas</a> <span class="label label-info">Auflistung aller Kinos</span></h4>
+<h4><a href="http://localhost/PopCornMovies/cinemas/1">http://localhost/PopCornMovies/cinemas/1</a> <span class="label label-info">Einzelne Kinos können über die ID aufgerufen werden.</span></h4>
+
+
 </div>
 
-<div class="container">
-	<div class="row">
-		<div class="col-xs-12 col-md-6 col-lg-6">
-			<h2>PopCornMovie!</h2>
-		</div>
 
-		<div class="col-xs-12 col-md-6 col-lg-6">
-			<h1>PopCornMovie!</h1>
-		</div>
-	</div>
-</div>
-
-<div class="container">
-	<div class="row">
-		<?php
-			$movies_json = file_get_contents('http://localhost/PopCornMovies/movies');
-			$movies = json_decode($movies_json);
-			foreach($movies as $movie) {
-		?>
-		<div class="col-md-3 col-sm-4 col-xs-6" >
-			<img src="<?php echo $movie->image_path ?>" alt="<?php echo $movie->name; ?>" class="img-responsive">
-			<p><?php echo $movie->name; ?></p>
-			<p><a href="http://localhost/PopCornMovies/movies/<?php echo $movie->id; ?>">Detailansicht</a></p>
-		</div>
-		<?php
-			}
-		?>
-	</div>
-</div>
+<script src="<?php echo base_url();?>assets/jquery/jquery.js"></script>
+<script src="<?php echo base_url();?>assets/bootstrap/js/bootstrap.min.js"></script>
+<script src="<?php echo base_url();?>assets/custom/js/work.js"></script>
+</body>
+</html>
