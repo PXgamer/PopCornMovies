@@ -38,6 +38,9 @@ class Movie_model extends CI_Model implements JsonSerializable
 		return $this->screenings();
 	}
 	
+	/*
+	Lädt alle referenzierten Vorstellungen als Array in die Klassenvariable screenings
+	*/
 	private function loadScreenings()
 	{
 		$this->load->model("screening_model");
@@ -67,10 +70,16 @@ class Movie_model extends CI_Model implements JsonSerializable
 	public function loadByID($id)
 	{
 		$query = $this->db->select('*')->from('movies')->where('id =', $id)->get();
-		$movie = $query->first_row('Movie_model');
-		$movie->loadScreenings();
 		
-		return $movie;
+		if ($query->num_rows() >= 1)
+		{
+			$movie = $query->first_row('Movie_model');
+			$movie->loadScreenings();
+			
+			return $movie;
+		}
+		
+		return FALSE;
 	}
 	
 	/*
@@ -93,12 +102,6 @@ class Movie_model extends CI_Model implements JsonSerializable
 			$builder = $builder->where('movie_cinemas.cinema_id =', $cinemaID);
 		}
 		
-		if ($minRating !== NULL)
-		{
-			$builder = $builder->join('ratings', 'ratings.movie_id = movies.id', 'inner');
-			$builder = $builder->having('AVG(ratings.rating) >=', $minRating);
-		}
-		
 		if ($genreID !== NULL)
 		{
 			$builder = $builder->join('movie_genres', 'movie_genres.movie_id = movies.id', 'inner');
@@ -116,6 +119,26 @@ class Movie_model extends CI_Model implements JsonSerializable
 
         foreach ($query->result('Movie_model') as $movie)
         {
+			if ($minRating !== NULL)
+			{
+				$curl = curl_init();
+				curl_setopt_array($curl, array(
+					CURLOPT_RETURNTRANSFER => true,
+					CURLOPT_URL => 'http://localhost/PopCornMovies/ratings/' . $movie->getID() . '?type=custom_avg'
+				));
+				
+				$httpCode = curl_getinfo($curl, CURLINFO_HTTP_CODE);
+				$result = json_decode(curl_exec($curl), true);
+				
+				curl_close($curl);
+				
+				if ($httpCode != 200 || $result['rating'] < $minRating)
+				{
+					// Film wird nicht in List hinzugefügt
+					continue;
+				}
+			}
+			
 			$movie->loadScreenings();
             $movies[] = $movie;
         }
