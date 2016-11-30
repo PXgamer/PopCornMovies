@@ -59,7 +59,7 @@ $autoload['packages'] = array();
 |	$autoload['libraries'] = array('user_agent' => 'ua');
 */
 $autoload['libraries'] = array(
-    'database','RestController', 'exceptions/HttpNotFoundException'
+    'database', 'exceptions/HttpNotFoundException'
 );
 
 /*
