@@ -16,15 +16,19 @@
 	<div class="info">
 		<img src="<?php echo base_url();?>assets/gfx/logo.png" alt="Logo">
 		<h2>Cinemas <small>by Oliver & Konstantin</small></h2>
-		<h4><a href="/PopCornMovies/cinemas">http://localhost/PopCornMovies/cinemas</a> <span class="label label-info">Auflistung aller Kinos</span></h4>
-		<h4><a href="/PopCornMovies/cinemas/1">http://localhost/PopCornMovies/cinemas/1</a> <span class="label label-info">Einzelne Kinos können über die ID aufgerufen werden.</span></h4>
+		<h4><a href="/PopCornMovies/cinemas" target="_blank">http://localhost/PopCornMovies/cinemas</a> <span class="label label-info">Auflistung aller Kinos</span></h4>
+		<h4><a href="/PopCornMovies/cinemas/1" target="_blank">http://localhost/PopCornMovies/cinemas/1</a> <span class="label label-info">Einzelne Kinos können über die ID aufgerufen werden.</span></h4>
 		
 		<h2>Movies <small>by Felix</small></h2>
-		<h4><a href="/PopCornMovies/movies">http://localhost/PopCornMovies/movies</a> <span class="label label-info">Auflistung aller Filme</span></h4>
-		<h4><a href="/PopCornMovies/movies?Cinema_id=1">http://localhost/PopCornMovies/movies?Cinema_id=1</a> <span class="label label-info">Auflistung aller Filme, die im Kino mit der ID 1 laufen</span></h4>
-		<h4><a href="/PopCornMovies/movies?Min_rating=5">http://localhost/PopCornMovies/movies?Min_rating=5</a> <span class="label label-info">Auflistung aller Filme mit einer Durchschnittsbewertung von mindestens 5</span></h4>
-		<h4><a href="/PopCornMovies/movies?Cinema_id=1&Min_rating=5">http://localhost/PopCornMovies/movies?Cinema_id=1&Min_rating=5</a> <span class="label label-info">Auflistung aller Filme, die im Kino mit der ID 1 laufen und einer Durchschnittsbewertung von mindestens 5</span></h4>
-		<h4><a href="/PopCornMovies/movies/1">http://localhost/PopCornMovies/movies/1</a> <span class="label label-info">Einzelne Filme können über die ID aufgerufen werden.</span></h4>
+		<h4><a href="/PopCornMovies/movies" target="_blank">http://localhost/PopCornMovies/movies</a> <span class="label label-info">Auflistung aller Filme</span></h4>
+		<h4><a href="/PopCornMovies/movies?Cinema_id=1" target="_blank">http://localhost/PopCornMovies/movies?Cinema_id=1</a> <span class="label label-info">Auflistung aller Filme, die im Kino mit der ID 1 laufen</span></h4>
+		<h4><a href="/PopCornMovies/movies?Min_rating=5" target="_blank">http://localhost/PopCornMovies/movies?Min_rating=5</a> <span class="label label-info">Auflistung aller Filme mit einer Durchschnittsbewertung von mindestens 5</span></h4>
+		<h4><a href="/PopCornMovies/movies?Cinema_id=1&Min_rating=5" target="_blank">http://localhost/PopCornMovies/movies?Cinema_id=1&Min_rating=5</a> <span class="label label-info">Auflistung aller Filme, die im Kino mit der ID 1 laufen und einer Durchschnittsbewertung von mindestens 5</span></h4>
+		<h4><a href="/PopCornMovies/movies/1" target="_blank">http://localhost/PopCornMovies/movies/1</a> <span class="label label-info">Einzelne Filme können über die ID aufgerufen werden.</span></h4>
+		
+		<h2>Ratings <small>by Tom & Tobias</small></h2>
+		<h4><a href="/PopCornMovies/ratings/1?type=custom_avg" target="_blank">http://localhost/PopCornMovies/ratings/1?type=custom_avg</a> <span class="label label-info">Liefert den Durchschnitt aller Bewertungen eines Filmes.</span></h4>
+		<h4><a href="/PopCornMovies/ratings/1?type=custom_avg" target="_blank">http://localhost/PopCornMovies/ratings/1?type=custom_avg</a> <span class="label label-info">Liefert alle Bewertungen inkl. Name, Text und Sterne-Bewertung eines Filmes.</span></h4>
 	</div>
 </div>
 
