@@ -52,7 +52,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 $route['default_controller'] = 'Welcome_controller/welcome';
 $route['cinemas'] = 'CinemasController/index';
 $route['cinemas/(:num)'] = 'CinemasController/getCinema/$1';
-$route['default_controller'] = 'RatingController';
+
 $route['ratings/(:num)']['get'] = 'RatingController/getRatings/$1';
 $route['ratings/(:num)']['post'] = 'RatingController/postCustomRating/$1';
 $route['404_override'] = '';
