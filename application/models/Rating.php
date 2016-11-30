@@ -75,11 +75,12 @@ class Rating extends CI_Model
         {
             foreach ($query->result() as $row)
             {
-                $this->setMovieId($row->movie_id);
-                $this->setUserName($row->user_name);
-                $this->setRating($row->rating);
-                $this->setText($row->text);
-                $ratings[] = $this;
+                $rating = new Rating();
+                $rating->setMovieId($row->movie_id);
+                $rating->setUserName($row->user_name);
+                $rating->setRating($row->rating);
+                $rating->setText($row->text);
+                $ratings[] = $rating;
             }
             return $ratings;
         }
