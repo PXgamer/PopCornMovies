@@ -28,7 +28,7 @@
 		
 		<h2>Ratings <small>by Tom & Tobias</small></h2>
 		<h4><a href="/PopCornMovies/ratings/1?type=custom_avg" target="_blank">http://localhost/PopCornMovies/ratings/1?type=custom_avg</a> <span class="label label-info">Liefert den Durchschnitt aller Bewertungen eines Filmes.</span></h4>
-		<h4><a href="/PopCornMovies/ratings/1?type=custom_avg" target="_blank">http://localhost/PopCornMovies/ratings/1?type=custom_avg</a> <span class="label label-info">Liefert alle Bewertungen inkl. Name, Text und Sterne-Bewertung eines Filmes.</span></h4>
+		<h4><a href="/PopCornMovies/ratings/1" target="_blank">http://localhost/PopCornMovies/ratings/1</a> <span class="label label-info">Liefert alle Bewertungen inkl. Name, Text und Sterne-Bewertung eines Filmes.</span></h4>
 	</div>
 </div>
 
