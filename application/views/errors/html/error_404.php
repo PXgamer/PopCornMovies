@@ -1,5 +1,6 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
+<<<<<<< HEAD
 ?><!DOCTYPE html>
 <html lang="en">
 <head>
@@ -62,3 +63,7 @@ p {
 	</div>
 </body>
 </html>
+=======
+
+echo "{error: '404', message: 'Ressource Not Found'}";
+>>>>>>> refs/remotes/origin/Rating
