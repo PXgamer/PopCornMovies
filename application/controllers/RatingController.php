@@ -25,7 +25,7 @@ class RatingController extends RestController {
 		}
 		catch(DbNotFoundException $e)
 		{
-			$this->response(null, null, new HttpNotFoundException("No Rating found for movie_id"));
+			$this->response(null, null, new HttpNotFoundException("No Rating found for movie_id "));
 		}
 	}
 
@@ -34,11 +34,18 @@ class RatingController extends RestController {
 		$this->load->model('Rating');
 		$rating_json = json_decode(trim(file_get_contents('php://input')), true);
 		$this->Rating->setMovieId($movie_id);
-		$this->Rating->setUserId($rating_json["user_id"]);
+		$this->Rating->setUserName($rating_json["user_name"]);
 		$this->Rating->setRating($rating_json["rating"]);
 		$this->Rating->setText($rating_json["text"]);
-		$rating = $this->Rating->insertRating();
+		try
+		{
+			$rating = $this->Rating->insertRating();
+		}
+		catch(Exception $e)
+		{
 
-		$this->response($rating, 200);
+		}
+
+		$this->response($rating, 201);
 	}
 }

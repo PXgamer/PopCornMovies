@@ -1,8 +1,4 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-echo "\nERROR: ",
-	$heading,
-	"\n\n",
-	$message,
-	"\n\n";
+echo "{error: '404', message: 'Ressource Not Found'}";
