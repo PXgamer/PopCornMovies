@@ -68,13 +68,35 @@ class Rating extends CI_Model
         }
     }
 
+    public function getRatings($movie_id)
+    {
+        $query = $this->db->query("SELECT * FROM popcorndb.ratings where movie_id = ?", array($movie_id));
+        if($query->num_rows() > 0)
+        {
+            foreach ($query->result() as $row)
+            {
+                $this->setMovieId($row->movie_id);
+                $this->setUserName($row->user_name);
+                $this->setRating($row->rating);
+                $this->setText($row->text);
+                $ratings[] = $this;
+            }
+            return $ratings;
+        }
+        else
+        {
+            throw new DbNotFoundException("movie");
+        }
+    }
+
     public function insertRating()
     {
-        $query = $this->db->query("INSERT INTO popcorndb.ratings VALUES(?,?,?,?);", array(
-            $this->getMovieId(), 
-            $this->getUserName(), 
-            $this->getRating(), 
-            $this->getText()));
+        $insert = $this->db->insert("popcorndb.ratings", array(
+        $this->getMovieId(), 
+        $this->getUserName(), 
+        $this->getRating(), 
+        $this->getText()));
+        return $this;
     }
     
     public function mapToArray()

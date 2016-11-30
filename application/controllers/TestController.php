@@ -5,7 +5,7 @@ require APPPATH . '/libraries/RestController.php';
 require APPPATH . '/libraries/exceptions/HttpNotFoundException.php';
 require APPPATH . '/libraries/exceptions/DbNotFoundException.php';
 
-class TestController 
+class TestController extends CI_Controller
 {
 	public function testApi()
     {
