@@ -13,14 +13,12 @@
 </head>
 <body>
 <div class="jumbotron">
-<img src="<?php echo base_url();?>assets/gfx/logo.png" alt="Logo">
-
-<h2>Cinemas <small>by Oliver & Konstantin</small></h2>
-<p></p>
-<h4><a href="http://localhost/PopCornMovies/cinemas">http://localhost/PopCornMovies/cinemas</a> <span class="label label-info">Auflistung aller Kinos</span></h4>
-<h4><a href="http://localhost/PopCornMovies/cinemas/1">http://localhost/PopCornMovies/cinemas/1</a> <span class="label label-info">Einzelne Kinos können über die ID aufgerufen werden.</span></h4>
-
-
+	<div class="info">
+		<img src="<?php echo base_url();?>assets/gfx/logo.png" alt="Logo">
+		<h2>Cinemas <small>by Oliver & Konstantin</small></h2>
+		<h4><a href="http://localhost/PopCornMovies/cinemas">http://localhost/PopCornMovies/cinemas</a> <span class="label label-info">Auflistung aller Kinos</span></h4>
+		<h4><a href="http://localhost/PopCornMovies/cinemas/1">http://localhost/PopCornMovies/cinemas/1</a> <span class="label label-info">Einzelne Kinos können über die ID aufgerufen werden.</span></h4>
+	</div>
 </div>
 
 

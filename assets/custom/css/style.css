@@ -1,4 +1,7 @@
 body {
-    padding: 12px 0 0 0;
     font-family: 'Lato', sans-serif;
+}
+
+.info {
+    padding: 0 0 0 12px;
 }
