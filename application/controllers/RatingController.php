@@ -41,7 +41,7 @@ class RatingController extends RestController
 			}
 			else
 			{
-				$this->response(null, null, new HttpdException(401, "Bad Request"));
+				$this->response(null, null, new HttpException(401, "Bad Request"));
 			}
 		}
 		catch(DbNotFoundException $e)
