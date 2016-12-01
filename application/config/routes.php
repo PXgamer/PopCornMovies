@@ -53,8 +53,8 @@ $route['default_controller'] = 'Welcome_controller/welcome';
 $route['cinemas'] = 'CinemasController/index';
 $route['cinemas/(:num)'] = 'CinemasController/getCinema/$1';
 
-$route['ratings/(:num)']['get'] = 'RatingController/getRatings/$1';
-$route['ratings/(:num)']['post'] = 'RatingController/postCustomRating/$1';
+$route['ratings']['get'] = 'RatingController/getRatings';
+$route['ratings']['post'] = 'RatingController/postCustomRating';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
 $route['movies'] = 'MovieController/getMovies';
