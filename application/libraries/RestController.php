@@ -4,7 +4,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 abstract class RestController extends CI_Controller 
 {
-    protected function response($data = null, $status_code = 200, Exception $exception = null)
+    protected function response($data = null, $status_code = 200, HttpException $exception = null)
     {
         if($exception === null)
         {
@@ -14,6 +14,7 @@ abstract class RestController extends CI_Controller
         else
         {
           $json_data = $this->createError($exception);
+           $this->output->set_status_header($exception->getStatusCode());
         }
         $this->output->set_output($json_data);
     }

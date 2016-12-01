@@ -55,6 +55,7 @@ $route['cinemas/(:num)'] = 'CinemasController/getCinema/$1';
 
 $route['ratings']['get'] = 'RatingController/getRatings';
 $route['ratings']['post'] = 'RatingController/postCustomRating';
+$route['test'] = 'TestController/testApi';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
 $route['movies'] = 'MovieController/getMovies';
