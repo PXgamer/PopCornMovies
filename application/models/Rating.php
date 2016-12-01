@@ -92,11 +92,11 @@ class Rating extends CI_Model
 
     public function insertRating()
     {
-        $insert = $this->db->insert("popcorndb.ratings", array(
-        $this->getMovieId(), 
-        $this->getUserName(), 
-        $this->getRating(), 
-        $this->getText()));
+        $insert = $this->db->insert("ratings", array(
+        "movie_id" => $this->getMovieId(), 
+        "user_name" => $this->getUserName(), 
+        "rating" => $this->getRating(), 
+        "text" => $this->getText()));
         return $this;
     }
     
