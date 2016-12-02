@@ -6,7 +6,9 @@ class Movie_model extends CI_Model implements JsonSerializable
     private $name = '';
     private $description = '';
 	private $image_path = '';
+	private $imdbID = null;
 	private $screenings = [];
+	private $omdb = null;
 
     public function __construct()
     {
@@ -47,6 +49,28 @@ class Movie_model extends CI_Model implements JsonSerializable
 		$this->screenings = $this->screening_model->loadByMovieID($this->id);
 	}
 	
+	private function loadIMDB()
+	{
+		if ($this->imdbID !== NULL)
+		{
+			$curl = curl_init();
+			curl_setopt_array($curl, array(
+				CURLOPT_RETURNTRANSFER => true,
+				CURLOPT_URL => 'http://www.omdbapi.com/?i=' . $this->imdbID . '&plot=short&r=json'
+			));
+			
+			$httpCode = curl_getinfo($curl, CURLINFO_HTTP_CODE);
+			$result = json_decode(curl_exec($curl), true);
+			
+			curl_close($curl);
+			
+			if ($httpCode == 200 || true)
+			{
+				$this->omdb = $result;
+			}
+		}
+	}
+	
 	/*
 	Lädt alle Filme aus der Datenbank und gibt diese in einem Array zurück
 	*/
@@ -58,6 +82,7 @@ class Movie_model extends CI_Model implements JsonSerializable
         foreach ($query->result('Movie_model') as $movie)
         {
 			$movie->loadScreenings();
+			$movie->loadIMDB();
             $movies[] = $movie;
         }
 
@@ -75,6 +100,7 @@ class Movie_model extends CI_Model implements JsonSerializable
 		{
 			$movie = $query->first_row('Movie_model');
 			$movie->loadScreenings();
+			$movie->loadIMDB();
 			
 			return $movie;
 		}
@@ -140,6 +166,7 @@ class Movie_model extends CI_Model implements JsonSerializable
 			}
 			
 			$movie->loadScreenings();
+			$movie->loadIMDB();
             $movies[] = $movie;
         }
 
