@@ -75,7 +75,7 @@ $query_builder = TRUE;
 
 $db['default'] = array(
 	'dsn'	=> '',
-	'hostname' => '10.14.202.74',
+	'hostname' => 'localhost',
 	'username' => 'user',
 	'password' => '123',
 	'database' => 'popcorndb',
