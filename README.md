@@ -16,3 +16,8 @@ The config parameters are near the top and look like:
 $config['base_url'] = 'http://localhost/PopCornMovies/';
 $config['frontend_url'] = 'http://localhost/PopCornFrontend/';
 ```
+
+The frontend can be downloaded from [Assimilationstheorie/PopCornFrontend][originalFrontend].
+
+[originalFrontend]: https://github.com/Assimilationstheorie/PopCornFrontend
+[originalBackend]: https://github.com/Assimilationstheorie/PopCornMovies
